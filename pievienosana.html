@@ -1,0 +1,45 @@
+{% extends "index.html"%}
+
+{% block saturs%}
+<!-- Skolēnu atzīmju pievienošana -->
+<form method="post">
+    <input type="number">
+    <select id = "skolotajs" name = "skolotajs">
+        {% for viens in skolotaji %}
+        <option value = "{{viens[2]}}">{{viens[0]}} {{viens[1]}} </option>
+        {% endfor %}
+    </select>
+    <select></select>
+    <input type="submit" value="Pievienot atzīmi!">
+</form>
+
+<!-- Skolotāju sasaiste ar priekšmetiem -->
+
+<form>
+    <select></select>
+    <select></select>
+    <input type="submit" value="Pievienot skolotāju priekšmetam!">
+</form>
+
+<h1>Skolēnu visas atzīmes:</h1>
+<table class="table">
+    <tr>
+        <th>Vārds</th>
+        <th>Uzvārds</th>
+        <th>Priekšmets</th>
+        <th>Atzīme</th>
+    </tr>
+</table>
+<h1>Skolotāju piesaiste priekšmetiem:</h1>
+<table class="table">
+    <tr>
+        <th>Vārds</th>
+        <th>Uzvārds</th>
+        <th>Priekšmets</th>
+        <th>Atzīme</th>
+    </tr>
+</table>
+
+
+
+{% endblock %}
