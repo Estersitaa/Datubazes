@@ -30,7 +30,18 @@ def skolotaju_tabulas_izveide():
     )
     conn.commit()
 
-# skolotaju_tabulas_izveide()
+def atzimju_tabulas_izveide():
+    cur = conn.cursor()
+    cur.execute("""
+                CREATE TABLE atzimes(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                atzime INTEGER NOT NULL,
+                skolena_id INTEGER NOT NULL,
+                prieksmeta_id INTEGER NULL, 
+                FORGEIN KEY (skolena_id) REFRENCES skoleni(id),
+                FORGEIN KEY (prieksmeta_id) REFRENCES  )""")
+
+atzimju_tabulas_izveide()
 
 # tabulas_izveide()
 
@@ -73,6 +84,19 @@ def iegut_skolotajus():
     cur.execute(
         """SELECT vards, uzvards, id FROM skolotaji"""
     )
+    conn.commit()
+    dati = cur.fetchall()
+    return dati
+
+def iegut_atzimes():
+    cur = conn.cursor
+    cur.execute(
+        """SELECT vards, uzvards, nosaukums, atzime
+        FROM 
+        (atzimes JOIN skoleni ON skoleni.id = atzimes.skolena_id)
+        JOIN prieksmeti ON prieksmeti.id = atzimes.prieksmeti_id"""
+    )
+    
     conn.commit()
     dati = cur.fetchall()
     return dati
