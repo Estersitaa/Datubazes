@@ -42,6 +42,9 @@ def pievienot():
 def atzimes():
     return render_template("atzimes.html")
 
+@app.route("/pievienot/atzīmi", methods=["POST"])
+def atzimi():
+    return redirect("/pievienot")
 
 
 if __name__ == '__main__':
